@@ -1,3 +1,5 @@
+require 'pry'
+
 class Pokemon
   STATUSES = {
     "sleep" => { name: "sleep", duration: 7, strength: 3 },

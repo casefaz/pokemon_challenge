@@ -1,3 +1,6 @@
+require './lib/pokemon'
+require 'rspec'
+
 RSpec.describe Pokemon do
   let(:magikarp) { Pokemon.new(name: 'magikarp') }
 
