@@ -1,3 +1,6 @@
+require './lib/pokemon'
+require 'rspec'
+
 RSpec.describe Pokemon do
   let(:magikarp) { Pokemon.new(name: 'magikarp') }
 
@@ -24,7 +27,7 @@ RSpec.describe Pokemon do
         end
       end
 
-      xit 'handles two effects' do
+      it 'handles two effects' do
         magikarp.apply('confusion', 1)
         magikarp.apply('paralyze', 4)
 
@@ -43,7 +46,7 @@ RSpec.describe Pokemon do
         end
       end
 
-      xit 'handles multiple effects' do
+      it 'handles multiple effects' do
         magikarp.apply('confusion', 2)
         magikarp.apply('sleep', 3)
         magikarp.apply('paralyze', 7)
@@ -64,7 +67,7 @@ RSpec.describe Pokemon do
         end
       end
 
-      xit 'handles effects cast multiple times' do
+      it 'handles effects cast multiple times' do
         magikarp.apply('confusion', 1)
         magikarp.apply('paralyze', 7)
         magikarp.apply('confusion', 9)
@@ -92,7 +95,7 @@ RSpec.describe Pokemon do
         end
       end
 
-      xit 'handles multiple effects cast multiple times' do
+      it 'handles multiple effects cast multiple times' do
         magikarp.apply('confusion', 1)
         magikarp.apply('paralyze', 3)
         magikarp.apply('sleep', 4)

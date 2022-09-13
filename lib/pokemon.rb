@@ -1,3 +1,5 @@
+require 'pry'
+
 class Pokemon
   STATUSES = {
     "sleep" => { name: "sleep", duration: 7, strength: 3 },
@@ -5,24 +7,30 @@ class Pokemon
     "confusion" => { name: "confusion", duration: 10, strength: 1 }
   }
   attr_reader :name
-  def initialize(name:)
-    @name = name
-    @battle = { 0 => nil }
+  def initialize(hash)
+    @name = hash[:name]
+    @battle = Hash.new(nil)
   end
 
   def apply(effect_name, round_applied_at)
-    binding.pry
-    # loop through battle, add number to round, at each round(#) add effect name and the round it was applied
-    # put it in an array and reduce it? - how would it store the data? increment the round and add the effect name for the duration?
-    # also consider linked lists and recursion in order to ADD and not just overwrite
-    # statuses[:duration].times do
-    @battle = { round_applied_at => effect_name }
-    # binding.pry
+    duration = STATUSES[effect_name][:duration]
+    # round = round_applied_at
+    round_applied_at.upto(duration + round_applied_at - 1) do |num|
+      if !STATUSES[@battle[num]].nil? && STATUSES[effect_name][:strength] >= STATUSES[@battle[num]][:strength]
+        @battle[num] = STATUSES[effect_name][:name]
+      elsif @battle[num].nil?
+        @battle[num] = STATUSES[effect_name][:name]
+      end
+    end
+    # while round <= duration
+    #   @battle[round] = effect_name
+    #   round += 1
+    # end
+    # binding.pry 
   end
 
   def status_at(round)
-    binding.pry
-    # deincrementation between duration and round happens in this method
+    # binding.pry
     @battle[round]
   end
 end
